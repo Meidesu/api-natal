@@ -5,13 +5,9 @@ import { Event } from "../../domain/entities/event.entity";
 
 @injectable()
 export class EventsController {
-  constructor(private eventService: EventService) {
-    console.log(eventService);
-  }
+  constructor(private eventService: EventService) {}
 
   public listAll = async (req: Request, res: Response) => {
-    console.log("service", this.eventService);
-
     const events: Event[] = await this.eventService.listAllEvents();
 
     res.status(200).json(events);

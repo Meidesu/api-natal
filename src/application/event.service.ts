@@ -11,9 +11,7 @@ interface CreateEventRequest {
 export class EventService {
   constructor(
     @inject("EventRepository") private eventRepository: EventRepository
-  ) {
-    console.log(eventRepository);
-  }
+  ) {}
 
   async createEvent({ name, description }: CreateEventRequest): Promise<Event> {
     const newEvent: Event = new Event(name, description, 1);
@@ -24,7 +22,6 @@ export class EventService {
   async listAllEvents(): Promise<Event[]> {
     const events = this.eventRepository.list();
 
-    console.log("sdfadfadfadfasdfa", events);
     return events;
   }
 }

@@ -3,15 +3,15 @@ import { Event } from "../../domain/entities/event.entity";
 import { EventRepository } from "../../domain/repositories/event.repository";
 import { AppDataSource } from "../../../data-source";
 
-export class TypeOrmUserRepository implements EventRepository {
+export class TypeOrmEventRepository implements EventRepository {
   private repository: Repository<Event>;
 
   constructor() {
     this.repository = AppDataSource.getRepository(Event);
   }
 
-  async findByUserId(userId: number): Promise<Event[]> {
-    return [new Event("name", "description", 0)];
+  async findById(id: number): Promise<Event | null> {
+    return this.repository.findOneBy({ id });
   }
 
   async list(): Promise<Event[]> {
